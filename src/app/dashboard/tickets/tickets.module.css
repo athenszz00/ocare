@@ -1,0 +1,811 @@
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: #f2f4f6;
+  overflow: hidden;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 250px;
+  background: #0098b0;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1002;
+}
+
+/* Header Sidebar */
+.sidebarHeader {
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* ✅ modal & sidebar close buttons: keep both named .closeBtn in CSS
+   (we will scope/override them later so they don't collide) */
+.closeBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #666;
+}
+
+/* Menu */
+.menu {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.6rem 0.8rem;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-size: 14px;
+}
+
+.menuItem:hover {
+  background: #ff4d00;
+}
+
+.active {
+  background: #ff4d00;
+}
+
+.subMenu {
+  margin-left: 1.5rem;
+  margin-top: 0.3rem;
+}
+
+.subItem {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 0.95rem;
+  padding: 0.3rem 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.subItem:hover {
+  color: #ff4d00;
+}
+
+.activeSub {
+  color: #ff4d00;
+  font-weight: 600;
+}
+
+/* Logout Section */
+.logout {
+  background: #ff4d00;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin: 20px;
+  transition: background 0.2s;
+  margin-top: auto;
+}
+
+.logout:hover {
+  background: #ff6420;
+}
+
+/* ===== TOGGLE BUTTON ===== */
+.toggleBtn {
+  display: none;
+  background: #0098b0;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1001;
+}
+
+.toggleBtn:hover {
+  background: #ff4d00;
+}
+
+/* ===== MAIN CONTENT ===== */
+.mainContent {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== HEADER ===== */
+.header {
+  display: flex;
+  gap: 10px; /* atau sesuai selera */
+  justify-content: flex-start; 
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 22px;
+  color: #0098b0;
+  font-weight: 600;
+}
+
+.addBtn {
+  background: #ff5c00;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-left: auto;
+}
+
+.addBtn:hover {
+  background: #ff7a2f;
+}
+
+/* ===== ADMIN TABLE ===== */
+.tableContainer {
+  background: #0098b0;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 1000px;
+  padding: 25px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  table-layout: fixed;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  color: #000;
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.table th {
+  background: #ffffff;
+  color: #000;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.editBtn {
+  background: #0098b0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.editBtn:hover {
+  background: #00b6d1;
+}
+
+.deleteBtn {
+  background: #ff3b30;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background: #ff624f;
+}
+
+.uploadBtn {
+  display: inline-block;
+  background-color: #0098b0;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  
+}
+.uploadBtn:hover {
+  background-color: #007e95;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  padding: 20px;
+}
+
+/* ===== USER FORM ===== */
+.formContainer {
+  background: #0098b0;
+  padding: 25px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.formContainer h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.formContainer label {
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.formContainer input,
+.formContainer textarea,
+.formContainer select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  color: #000000;
+}
+
+
+.formContainer textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+.submitBtn {
+  margin-top: 10px;
+  background: #ff5c00;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: flex-end;
+}
+
+.submitBtn:hover {
+  background: #ff7a2f;
+}
+
+/* ===== LOADING SCREEN ===== */
+.loadingScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #0098b0;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #fff;
+}
+
+/* ===== MODAL STYLING ===== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modalContent {
+  background: #ffffff;
+  color: #000000;
+  padding: 20px;
+  border-radius: 12px;
+  width: 95%;
+  max-width: 450px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.modalHeader h2 {
+  color: #000;
+}
+
+.modalForm label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+  color: #222;
+}
+
+.modalForm input,
+.modalForm select,
+.modalForm textarea {
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  color: #000;
+  background-color: #fff;
+}
+
+.modalForm input::placeholder,
+.modalForm textarea::placeholder {
+  color: #666;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.saveBtn {
+  background: #0098b0;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.saveBtn:hover {
+  background: #007a8d;
+}
+
+.cancelBtn {
+  background: #ccc;
+  color: #000;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancelBtn:hover {
+  background: #aaa;
+}
+
+/* ✅ modal closeBtn (kept generic; modal-scoped override later) */
+.closeBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #666;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===== SIDEBAR MOBILE ===== */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -240px;
+    width: 240px;
+    height: 100%;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+    transition: left 0.3s ease;
+    z-index: 10;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .closeBtn {
+    display: block;
+  }
+
+  .toggleBtn {
+    display: inline-block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: #0098b0;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    z-index: 2000;
+  }
+
+  .sidebarOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.4);
+    z-index: 9;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+  }
+
+  .sidebarOverlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mainContent {
+    padding-top: 60px;
+  }
+}
+
+/* ==========================================================
+   ✅ RESPONSIVE FIX — TOMBOL EDIT & DELETE TETAP TAMPIL DI MOBILE
+   ========================================================== */
+@media (max-width: 768px) {
+  /* ===== TABLE WRAPPER ===== */
+  .tableContainer {
+    padding: 10px;
+    overflow-x: auto;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* biar bisa menyesuaikan isi */
+  }
+
+  .table th,
+  .table td {
+    font-size: 12px;
+    padding: 8px;
+    word-break: break-word;
+  }
+
+  /* ===== ACTION BUTTONS ===== */
+  .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 6px; /* cukup jarak agar tidak nempel */
+  }
+
+  .editBtn,
+  .deleteBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    flex: 0 0 auto;
+    min-width: 40px; /* supaya tetap kelihatan */
+  }
+
+  /* Pastikan kolom aksi cukup lebar */
+  .table td:last-child {
+    min-width: 100px;
+  }
+
+  /* Header dan tombol tambah diatur agar tidak pecah */
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .addBtn {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .formContainer {
+    padding: 15px;
+  }
+
+  .submitBtn {
+    width: 100%;
+  }
+
+  /* Sidebar responsive tetap sama */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -240px;
+    width: 230px;
+    height: 100%;
+    background: #0098b0;
+    transition: left 0.3s ease;
+    z-index: 1002;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .toggleBtn {
+    display: inline-block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: #0098b0;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    z-index: 2000;
+  }
+
+  .sidebarHeader .closeBtn {
+    display: block !important;
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    background: transparent;
+    border: none;
+    font-size: 1.6rem;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .sidebarOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.4);
+    z-index: 9;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+  }
+
+  .sidebarOverlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .tableContainer::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .tableContainer::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+
+  .tableContainer::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@media (max-width: 480px) {
+  .table th,
+  .table td {
+    font-size: 11px;
+    padding: 6px;
+  }
+
+  .actions {
+    gap: 4px;
+  }
+
+  .editBtn,
+  .deleteBtn {
+    padding: 5px 7px;
+    font-size: 11px;
+  }
+
+  .table td:last-child {
+    min-width: 90px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .addBtn {
+    width: 100%;
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 15px;
+  }
+
+  .formContainer {
+    padding: 15px;
+  }
+
+  .submitBtn {
+    width: 100%;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+.actions {
+    flex-direction: row;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .editBtn,
+  .deleteBtn {
+    padding: 5px 6px;
+  }
+
+  .table td:last-child {
+    min-width: 90px;
+  }
+ 
+.sidebarHeader .closeBtn {
+  display: none; 
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  z-index: 1003;
+}
+
+.sidebar.open ~ .toggleBtn,
+.sidebar.open + .toggleBtn,
+.sidebar.open ~ .toggle-btn,
+.sidebar.open + .toggle-btn {
+  display: none !important;
+}
+.toggleBtn.hide {
+  display: none !important;
+}
+.modalContent .closeBtn {
+  display: block !important;
+  color: #666 !important;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .sidebarHeader .closeBtn {
+    display: block !important;
+  }
+
+  .toggleBtn {
+    display: inline-block !important;
+  }
+
+  .sidebarOverlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .sidebar {
+    z-index: 1002;
+  }
+
+  .sidebarHeader .closeBtn {
+    z-index: 1005;
+  }
+}
+
+@media (max-width: 900px) {
+  .toggleBtn.helper-hide {
+    display: none !important;
+  }
+}
+
+/* ✅ RESPONSIVE TABLE — SMOOTH SCROLL & RAPIH */
+@media (max-width: 900px) {
+  .tableContainer {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch; 
+    scroll-behavior: smooth;            
+    padding: 10px 12px;                 
+    margin: 0 auto;                     
+    border-radius: 10px;
+    background: #0098b0;                   
+  }
+
+  .table {
+    min-width: 900px;                   
+    width: max-content;
+    table-layout: auto;
+    border-collapse: collapse;
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .table th,
+  .table td {
+    white-space: nowrap;                
+    text-align: left;
+    padding: 10px 12px;
+  }
+
+  .tableContainer::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .tableContainer::-webkit-scrollbar-thumb {
+    background: #bdbdbd;
+    border-radius: 10px;
+  }
+
+  .tableContainer::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+  }
+
+  .tableContainer::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}

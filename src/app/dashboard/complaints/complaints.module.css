@@ -1,0 +1,251 @@
+/* === GLOBAL LAYOUT === */
+.container {
+  display: flex;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+  background: #e9e9e9;
+}
+
+/* === SIDEBAR === */
+.sidebar {
+  width: 250px;
+  background: #0098b0;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.open {
+  left: 0;
+}
+.sidebarHeader {
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.closeBtn {
+  display: none;
+  background: none;
+  color: #fff;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.menu {
+  flex: 1;
+  padding: 1rem;
+}
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.6rem 0.8rem;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.menuItem:hover {
+  background: #ff4d00;
+}
+
+.logoutSection {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ff4d00;
+  border: none;
+  color: #fff;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.logoutBtn:hover {
+  background: #e84300;
+}
+
+/* === MAIN AREA === */
+.main {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.header h1 {
+  font-size: 1.3rem;
+  color: #000;
+}
+.menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #0098b0;
+  cursor: pointer;
+}
+
+/* === FORM CARD (USER) === */
+.formCard {
+  background: #0098b0;
+  color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.formCard h2 {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #0098b0;
+}
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.formGroup input,
+.formGroup textarea,
+.formSelect {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+.formGroup textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+}
+.submitBtn {
+  background: #ff4d00;
+  border: none;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.submitBtn:hover {
+  background: #ff4d00;
+}
+
+/* === ADMIN TABLE === */
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: 6px;
+  background: #0098b0;
+  padding: 10px;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #fff;
+  gap: 8px;
+}
+.table th,
+.table td {
+  border: 1px solid #000;
+  padding: 6px 10px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.table th {
+  background: #0098b0;
+  text-transform: lowercase;
+}
+.editBtn,
+.saveBtn,
+.deleteBtn {
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.editBtn, .saveBtn { background: #ff4d00; color: #fff; }
+.editBtn:hover, .saveBtn:hover { background: #e84300; }
+.deleteBtn { background: #c70000; color: #fff; }
+.deleteBtn:hover { background: #a00000; }
+
+/* FILTER */
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.filterBox {
+  background: #ff4d00;
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.filterDropdown {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    height: 100%;
+    z-index: 50;
+  }
+  .open { left: 0; }
+  .closeBtn { display: inline-block; }
+  .menuToggle { display: inline-block; }
+
+  .formCard {
+    width: 90%;
+    padding: 15px;
+  }
+  .table th, .table td { font-size: 0.85rem; padding: 6px; }
+}

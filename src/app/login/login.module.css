@@ -1,0 +1,258 @@
+/* ============================
+   GLOBAL LAYOUT
+============================ */
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+/* ============================
+   LEFT SIDE (IMAGE)
+============================ */
+.leftSide {
+  flex: 1;
+  background-image: url('/image/bgloginkiri.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.textBox h2 {
+  color: #16a34a;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 1.5rem;
+}
+
+.illustration img {
+  max-width: 420px;
+  width: 100%;
+  height: auto;
+  transform: translateY(-1px);
+}
+
+/* ============================
+   RIGHT SIDE (FORM AREA)
+============================ */
+.rightSide {
+  flex: 1;
+  background: #f9fafb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginBox {
+  width: 100%;
+  max-width: 340px;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.logo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #0098B0;
+}
+
+/* ============================
+   FORM
+============================ */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.7rem;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 0.75rem;
+  padding: 0.6rem 1rem;
+  background: #f3f4f6;
+  transition: all 0.2s ease;
+}
+
+.inputGroup:focus-within {
+  border-color: #0098B0;
+  background: #fff;
+}
+
+.iconBlack {
+  color: #000;
+  font-size: 1.2rem;
+  margin-right: 0.6rem;
+}
+
+.inputGroup input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.9rem;
+  color: #494949;
+}
+
+/* ============================
+   LOGIN BUTTON
+============================ */
+.loginButton {
+  width: 100%;
+  background: #ff8800;
+  color: #fff;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.loginButton:hover {
+  transform: translateY(-2px);
+  background: #f18101;
+}
+
+/* ============================
+   MESSAGE
+============================ */
+.message {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.success {
+  color: #16a34a;
+}
+
+.error {
+  color: #dc2626;
+}
+
+/* ============================
+   SOCIAL ICONS
+============================ */
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 20px;
+}
+
+.icon {
+  font-size: 24px;
+  color: #0098B0;
+  transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: #007bff;
+  transform: scale(1.1);
+}
+
+/* ============================
+   FOOTER
+============================ */
+.footer {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.link {
+  font-weight: 600;
+  color: #0098B0;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* ============================
+   ✅ RESPONSIVE DESIGN
+============================ */
+
+/* --- Mobile & Tablet (<900px) --- */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .leftSide {
+    flex: none;
+    height: 350px; /* ✅ tetap muncul tapi lebih kecil */
+    padding: 1.5rem 1rem;
+    background-size: cover;
+  }
+
+  .textBox h2 {
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+  }
+
+  .illustration img {
+    max-width: 220px;
+  }
+
+  .rightSide {
+    padding: 2rem 1rem 3rem;
+    background: #fff;
+  }
+
+  .loginBox {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem;
+    box-shadow: none;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* --- Small Phones (<480px) --- */
+@media (max-width: 480px) {
+  .leftSide {
+    height: 160px; /* ✅ versi sangat kecil */
+  }
+
+  .textBox h2 {
+    font-size: 1.4rem;
+  }
+
+  .illustration img {
+    max-width: 160px;
+  }
+
+  .loginBox {
+    padding: 1rem;
+  }
+
+  .inputGroup input {
+    font-size: 0.85rem;
+  }
+
+  .footer {
+    font-size: 0.75rem;
+  }
+}

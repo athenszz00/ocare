@@ -1,0 +1,396 @@
+/* === GLOBAL LAYOUT === */
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: #e9e9e9;
+  overflow: hidden;
+}
+
+/* === SIDEBAR === */
+.sidebar {
+  width: 250px;
+  background: #0098b0;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateX(0);
+  transition: all 0.3s ease;
+  position: relative;
+  
+}
+
+/* ✅ CLOSE BUTTON (X ABU-ABU) */
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none; /* default hidden, muncul hanya di mobile */
+  z-index: 9999;
+}
+
+.closeIcon {
+  font-size: 26px;
+  color: #e5e5e5;
+  font-weight: bold;
+}
+
+/* === MODE COLLAPSED DESKTOP === */
+.sidebar.collapsed {
+  width: 70px;
+}
+.sidebar.collapsed .logo {
+  opacity: 0;
+  pointer-events: none;
+}
+.sidebar.collapsed .menuItem span,
+.sidebar.collapsed .profileBtn span,
+.sidebar.collapsed .logoutBtn span {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* === LOGO === */
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: opacity 0.3s ease;
+}
+
+/* === MENU === */
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  margin-bottom: 150px;
+}
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.menuItem:hover {
+  background: #ff4d00;
+}
+.active {
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: 600;
+}
+
+/* === PROFILE & LOGOUT === */
+.profileSection {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.profileBtn,
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  background: none;
+  border: none;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.profileBtn:hover,
+.logoutBtn:hover {
+  opacity: 0.8;
+  background: #ff4d00;
+}
+
+/* === TOGGLE BUTTON (X ORANYE DESKTOP) === */
+/* ✅ Disembunyikan ketika mobile agar X oranye tidak nongol */
+.toggleBtn {
+  position: absolute;
+  top: 20px;
+  right: -35px;
+  background: #0098b0;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1100;
+}
+
+/* === MAIN CONTENT === */
+.mainContent {
+  flex: 1;
+  padding: 25px 30px;
+  overflow-y: auto;
+}
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  margin-left: 25px; 
+}
+.headerTop h1 {
+  font-size: 1.8rem;
+  color: #000;
+}
+
+/* === HAMBURGER BUTTON (MOBILE) === */
+.mobileToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #0098b0;
+  cursor: pointer;
+}
+
+.sidebarToggle {
+  display: none; /* disembunyikan di desktop */
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 9999;
+  background: #0098b0;
+  border: none;
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+
+.sidebarToggle:hover {
+  background: #007f93;
+}
+/* === REPORT BOX === */
+.reportBox {
+  background: #fff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+.reportHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+.reportHeader h2 {
+  font-size: 1.2rem;
+  color: #000;
+}
+.actionBtns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.filterDropdown {
+  padding: 8px 2px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  outline: none;
+  text-align: center;
+  background-color: #ff4d00;
+  color: white;
+  appearance: none;
+}
+
+.filterDropdown option {
+  background-color: white; 
+  color: black;           
+}
+.exportBtn {
+  background: #0098b0;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.exportBtn:hover {
+  background: #007b94;
+}
+
+.uploadBtn {
+  background: #0098b0;        
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: inline-flex;       
+  align-items: center;
+  gap: 6px;                  
+}
+
+.uploadBtn:hover {
+  background: #007b94;       
+}
+
+/* === TABLE === */
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.table th {
+  background: #0098b0;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+}
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  color: #000;
+}
+.table tr:hover {
+  background: #f5f5f5;
+}
+.inputEdit {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* === BUTTONS (EDIT & SAVE) === */
+.footerButtons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+.editBtn,
+.saveBtn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-right: 5px;
+}
+.editBtn {
+  background: #ff4d00;
+}
+.editBtn:hover {
+  background: #d97706;
+}
+.saveBtn {
+  background: #0098b0;
+}
+.saveBtn:hover {
+  background: #007b94;
+}
+
+/* === OVERLAY (MOBILE) === */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* === RESPONSIVE MOBILE MODE === */
+@media (max-width: 700px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100vh;
+    width: 250px;
+    transition: left 0.3s ease;
+    z-index: 9998;
+  }
+  .sidebar.open ~ .headerTop .sidebarToggle {
+    display: none !important;
+  }
+  .sidebar.open {
+    left: 0;
+  }
+  .sidebarToggle {
+    display: flex;
+  }
+
+  .toggleBtn {
+    display: none ;
+  }
+
+  
+  .toggleBtn {
+    display: none !important;
+  }
+
+
+  .closeBtn {
+    display: block !important;
+  }
+
+  .sidebar.collapsed {
+    width: 250px;
+  }
+
+  .mobileToggle {
+    display: block;
+  }
+
+  .mainContent {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .headerTop h1 {
+    font-size: 1.4rem;
+  }
+
+  .table th,
+  .table td {
+    font-size: 0.85rem;
+  }
+}

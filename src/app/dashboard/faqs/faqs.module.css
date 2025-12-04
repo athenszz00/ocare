@@ -1,0 +1,337 @@
+/* ====== GLOBAL CONTAINER ====== */
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: #e6e6e6;
+  overflow: hidden;
+}
+
+/* ====== SIDEBAR ====== */
+.sidebar {
+  width: 240px;
+  background: #0098b0;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+
+.sidebarHeader {
+  padding: 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+}
+.closeBtn {
+  background: none;
+  color: #fff;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: none; /* default: hidden */
+}
+.menu {
+  flex: 1;
+  padding: 0.5rem 1rem;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: #fff;
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 500;
+}
+
+.menuItem:hover {
+  background: #ff4d00;
+}
+
+.logoutSection {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logoutBtn {
+  background: #ff4d00;
+  color: #fff;
+  border: none;
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.logoutBtn:hover {
+  opacity: 0.9;
+}
+
+/* ====== MAIN CONTENT ====== */
+.main {
+  flex: 1;
+  background: #f5f5f5;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  position: relative;
+}
+
+.menuToggle {
+  display: none;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #0098b0;
+  border: none;
+  color: #fff;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ====== FAQ SECTION ====== */
+.faqSection {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+}
+
+.faqTitle {
+  text-align: center;
+  color: #0098b0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.searchBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: #f0f8fa;
+  border-radius: 50px;
+  padding: 6px 12px;
+  width: 320px;
+  margin: 0 auto 1.5rem;
+  border: 1px solid #0098b0;
+}
+
+.searchBox input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #000;
+  font-size: 0.9rem;
+}
+
+.searchBox button {
+  background: #0098b0;
+  border: none;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.searchBox button:hover {
+  background: #007a8f;
+}
+
+/* ====== FAQ LIST ====== */
+.faqList {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.faqQuestion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #0098b0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  padding: 6px 0;
+  transition: 0.3s;
+}
+
+.faqQuestion:hover {
+  color: #ff4d00;
+}
+
+.faqAnswer {
+  color: #333;
+  margin-left: 24px;
+  margin-top: 4px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ====== CONTACT SECTION ====== */
+/* ====== FOOTER BARU ====== */
+.footer {
+  background: #0098b0;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 2rem 1.5rem;
+}
+
+.footerBrand {
+  flex: 1;
+  min-width: 250px;
+  padding-right: 2rem;
+}
+
+.footerBrand h3 {
+  font-size: 1.4rem;
+  color: #0098b0;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.footerBrand p {
+  color: #fff;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.footerSection {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footerSection h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.6rem;
+}
+
+.footerSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerSection li {
+  margin: 4px 0;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.footerBottom {
+  text-align: center;
+  background: #0098b0;
+  color: #fff;
+  padding: 0.9rem;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  font-size: 0.85rem;
+  margin-top: 1.2rem;
+}
+.footerBrand h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.6rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footerContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footerBrand {
+    padding-right: 0;
+  }
+
+  .footerSection {
+    margin-top: 1rem;
+  }
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    left: -240px;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+  }
+    .closeBtn {
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 12px;
+  }
+
+  .sidebarHeader {
+    position: relative;
+    text-align: left;
+    padding-right: 40px;
+  }
+  
+  .open {
+    transform: translateX(240px);
+  }
+
+  .menuToggle {
+    display: inline-block;
+  }
+
+  .contactSection {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contactLeft,
+  .contactRight {
+    max-width: 50%;
+    text-align: center;
+  }
+
+  .imageWrapper {
+    position: static;
+    margin-top: 1rem;
+  }
+}
