@@ -1,4 +1,5 @@
-import { pool } from "@/lib/db";
+import pool from "@/lib/db";
+
 import * as XLSX from "xlsx";
 import multer from "multer";
 import fs from "fs";

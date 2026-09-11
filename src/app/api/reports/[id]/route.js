@@ -1,33 +1,30 @@
-import { pool } from "@/lib/db";
+import pool from "@/lib/db";
+
 
 export async function DELETE(req, { params }) {
   try {
     const { id } = params;
 
-    if (!id) {
-      return Response.json({ error: "Missing ID" }, { status: 400 });
+    const reportCheck = await pool.query("SELECT ticket_id FROM reports WHERE id=$1", [id]);
+
+    if (reportCheck.rowCount === 0) {
+      return Response.json({ error: "Report tidak ditemukan" }, { status: 404 });
     }
 
-    const [reportResult] = await pool.query(
-      `DELETE FROM reports WHERE id = ?`,
-      [id]
-    );
+    const ticketId = reportCheck.rows[0].ticket_id;
 
-    if (reportResult.affectedRows === 0) {
-      return Response.json({ error: "Data report tidak ditemukan" }, { status: 404 });
-    }
-
-    await pool.query(`DELETE FROM tickets WHERE id = ?`, [id]);
+    await pool.query("DELETE FROM reports WHERE id=$1", [id]);
+    await pool.query("DELETE FROM tickets WHERE id=$1", [ticketId]);
 
     return Response.json({
       success: true,
-      message: "🗑️ Data report & tiket terkait berhasil dihapus!",
+      message: "Report & tiket berhasil dihapus!",
     });
 
   } catch (err) {
-    console.error("❌ DELETE /api/reports/[id] error:", err);
+    console.error("DELETE /api/reports/[id] error:", err);
     return Response.json(
-      { error: "Gagal menghapus report & tiket terkait" },
+      { error: "Gagal menghapus report & tiket" },
       { status: 500 }
     );
   }

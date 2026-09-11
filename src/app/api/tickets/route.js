@@ -1,11 +1,11 @@
-import { pool } from "@/lib/db";
+import pool from "@/lib/db";
 
 // ============================================================
 // ✅ GET — Ambil semua data tickets
 // ============================================================
 export async function GET() {
   try {
-    const [rows] = await pool.query(`
+    const result = await pool.query(`
       SELECT 
         id,
         name,
@@ -20,7 +20,7 @@ export async function GET() {
       ORDER BY id DESC
     `);
 
-    return Response.json(rows);
+    return Response.json(result.rows);
   } catch (err) {
     console.error("❌ GET /api/tickets error:", err);
     return Response.json({ error: err.message }, { status: 500 });
@@ -28,39 +28,54 @@ export async function GET() {
 }
 
 // ============================================================
-// ✅ POST — Tambah ticket baru + otomatis sinkron ke reports
+// ✅ POST — Tambah ticket baru + sinkron ke reports
 // ============================================================
 export async function POST(req) {
   try {
-    const { name, title, classification, organisasi, description, status } =
-      await req.json();
+    const {
+      name,
+      title,
+      classification,
+      organisasi,
+      description,
+      status,
+    } = await req.json();
 
-    // 1️⃣ INSERT ke tickets
-    const [ticketResult] = await pool.query(
+    // INSERT ke tickets dulu
+    const insertTicket = await pool.query(
       `
       INSERT INTO tickets (name, title, classification, organisasi, description, status, created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())
+      VALUES ($1, $2, $3, $4, $5, $6, NOW(), NOW())
+      RETURNING id
       `,
       [name, title, classification, organisasi, description, status || "Open"]
     );
 
-    const ticketId = ticketResult.insertId;
+    const ticketId = insertTicket.rows[0].id;
 
-    // 2️⃣ INSERT ke reports (sinkron)
+    // Sinkron otomatis ke reports
     await pool.query(
       `
       INSERT INTO reports (id, name, title, classification, organisasi, description, status, created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
-      ON DUPLICATE KEY UPDATE
-        name = VALUES(name),
-        title = VALUES(title),
-        classification = VALUES(classification),
-        organisasi = VALUES(organisasi),
-        description = VALUES(description),
-        status = VALUES(status),
+      VALUES ($1, $2, $3, $4, $5, $6, $7, NOW(), NOW())
+      ON CONFLICT (id) DO UPDATE SET
+        name = EXCLUDED.name,
+        title = EXCLUDED.title,
+        classification = EXCLUDED.classification,
+        organisasi = EXCLUDED.organisasi,
+        description = EXCLUDED.description,
+        status = EXCLUDED.status,
         updated_at = NOW()
       `,
-      [ticketId, name, title, classification, organisasi, description, status || "Open"]
+      [
+        ticketId,
+        name,
+        title,
+        classification,
+        organisasi,
+        description,
+        status || "Open",
+      ]
     );
 
     return Response.json({
@@ -89,22 +104,20 @@ export async function PUT(req) {
       status,
     } = await req.json();
 
-    // UPDATE tickets
     await pool.query(
       `
       UPDATE tickets
-      SET name=?, title=?, classification=?, organisasi=?, description=?, status=?, updated_at=NOW()
-      WHERE id=?
+      SET name=$1, title=$2, classification=$3, organisasi=$4, description=$5, status=$6, updated_at=NOW()
+      WHERE id=$7
       `,
       [name, title, classification, organisasi, description, status, id]
     );
 
-    // UPDATE reports (sinkron)
     await pool.query(
       `
       UPDATE reports
-      SET name=?, title=?, classification=?, organisasi=?, description=?, status=?, updated_at=NOW()
-      WHERE id=?
+      SET name=$1, title=$2, classification=$3, organisasi=$4, description=$5, status=$6, updated_at=NOW()
+      WHERE id=$7
       `,
       [name, title, classification, organisasi, description, status, id]
     );
@@ -126,8 +139,8 @@ export async function DELETE(req) {
   try {
     const { id } = await req.json();
 
-    await pool.query(`DELETE FROM tickets WHERE id=?`, [id]);
-    await pool.query(`DELETE FROM reports WHERE id=?`, [id]);
+    await pool.query(`DELETE FROM tickets WHERE id=$1`, [id]);
+    await pool.query(`DELETE FROM reports WHERE id=$1`, [id]);
 
     return Response.json({
       success: true,

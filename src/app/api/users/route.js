@@ -1,42 +1,78 @@
-import { pool } from "@/lib/db";
+import { NextResponse } from "next/server";
+import { sql } from "@vercel/postgres";
 import bcrypt from "bcryptjs";
 
-export async function GET() {
-  try {
-    const [rows] = await pool.query("SELECT id, username, role FROM users");
-    return Response.json({ users: rows });
-  } catch (err) {
-    console.error("GET Users Error:", err);
-    return Response.json({ users: [] }, { status: 500 });
-  }
-}
 
 export async function POST(req) {
   try {
-    const { username, password, role } = await req.json();
+    const body = await req.json();
 
-    // ✅ Validasi sederhana
+    const { username, password, role } = body;
+
+    // ===== VALIDASI DASAR =====
     if (!username || !password || !role) {
-      return Response.json(
-        { success: false, message: "Semua field wajib diisi!" },
+      return NextResponse.json(
+        { error: "username, password, dan role wajib diisi" },
         { status: 400 }
       );
     }
 
-    // ✅ Hash password sebelum disimpan
+    // ===== VALIDASI ROLE (ANTI NGACO) =====
+    const allowedRoles = [
+      "user",
+      "admin",
+      "doctor",
+      "staff",
+      "manager"
+    ];
+
+    if (!allowedRoles.includes(role)) {
+      return NextResponse.json(
+        { error: "role tidak valid" },
+        { status: 400 }
+      );
+    }
+
+    // ===== CEK USERNAME =====
+    const existing =
+      await sql`SELECT id FROM users WHERE username = ${username}`;
+
+    if (existing.rowCount > 0) {
+      return NextResponse.json(
+        { error: "username sudah terdaftar" },
+        { status: 409 }
+      );
+    }
+
+    // ===== HASH PASSWORD =====
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // ✅ Simpan ke database
-    await pool.query(
-      "INSERT INTO users (username, password, role) VALUES (?, ?, ?)",
-      [username, hashedPassword, role]
-    );
+    // ===== INSERT (ROLE EXPLICIT, BUKAN DEFAULT) =====
+    const result = await sql`
+      INSERT INTO users (
+        username,
+        password,
+        role
+      ) VALUES (
+        ${username},
+        ${hashedPassword},
+        ${role}
+      )
+      RETURNING id, username, role, created_at
+    `;
 
-    return Response.json({ success: true, message: "User berhasil ditambahkan!" });
+    return NextResponse.json(
+      {
+        success: true,
+        user: result.rows[0]
+      },
+      { status: 201 }
+    );
   } catch (err) {
-    console.error("POST User Error:", err);
-    return Response.json(
-      { success: false, message: "Terjadi kesalahan saat menambah user." },
+    console.error("REGISTER ERROR:", err);
+
+    return NextResponse.json(
+      { error: "internal server error" },
       { status: 500 }
     );
   }

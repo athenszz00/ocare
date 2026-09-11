@@ -1,4 +1,5 @@
-import { pool } from "@/lib/db";
+import pool from "@/lib/db";
+
 
 // =============================================
 // NORMALISASI TANGGAL → FORMAT FINAL:
